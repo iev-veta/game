@@ -1,5 +1,6 @@
 import pygame as pg
 import sys
+from random import randrange
 
 class Game:
    def init(self):
@@ -14,6 +15,18 @@ class Game:
        self.FPS = 60  # FPS
        self.clock = pg.time.Clock()  # поле счётчика времени
 
+       self.image = pg.transform.scale(pg.image.load('bg.jpg').convert(),
+                                        (self.WIDTH, self.HEIGHT))
+
+        self.block_list = [pg.Rect(10 + 120 * i,
+                                   10 + 70 * j,
+                                   100,
+                                   50) for i in range(10) for j in range(4)]
+
+        self.color_list = [(randrange(30, 256),
+                            randrange(30, 256),
+                            randrange(30, 256)) for _ in range(10) for _ in range(4)]
+
    def update(self):
        self.paddle.update()
        self.ball.update()
@@ -21,8 +34,14 @@ class Game:
        self.clock.tick(self.FPS)
 
    def draw(self):
-       self.paddle.draw()
-       self.ball.draw()
+    
+      self.screen.blit(self.image, (0, 0))
+
+      for color, block in enumerate(self.block_list):
+         pg.draw.rect(self.screen, self.color_list[color], block)
+
+      self.paddle.draw()
+      self.ball.draw()
 
    @staticmethod
    def check_events():
