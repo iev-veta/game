@@ -3,7 +3,7 @@ import sys
 from random import randrange
 
 class Game:
-   def init(self):
+   def __init__(self):
        pg.init()  # инициализация pygame
        self.WIDTH = 1200  # ширина
        self.HEIGHT = 700  # высота
@@ -80,7 +80,7 @@ class Paddle:
          self.rect.right += self.paddle_speed
 
 class Ball:
-   def init(self, root: Game):
+   def __init__(self, root: Game):
        pass
 
    def draw(self):
@@ -89,6 +89,6 @@ class Ball:
    def update(self):
        pass
 
-if name == 'main':
+if __name__ == '__main__':
    game = Game()
    game.run()
