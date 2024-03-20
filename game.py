@@ -1,6 +1,12 @@
 import pygame as pg
 import sys
 from random import randrange
+from game_over import GameOver
+from game_win import GameWin
+
+from ball import Ball
+from paddle import Paddle
+
 
 class Game:
    def __init__(self):
@@ -56,39 +62,4 @@ class Game:
            self.update()
            self.draw()
 
-class Paddle:
-   def __init__(self, root: Game):
-      self.game = root  # поле игры
-      self.paddle_w = 250  # ширина
-      self.paddle_h = 30  # высота
-      self.paddle_speed = 15  # скорость движения
-      self.rect = pg.Rect(root.WIDTH // 2 - self.paddle_w // 2,
-         root.HEIGHT - self.paddle_h - 10,
-         self.paddle_w, self.paddle_h)  # рисуем в центре экрана снизу
-      self.color = pg.Color(200, 130, 50)  # цвет прямоугольника
 
-   def draw(self):
-      pg.draw.rect(self.game.screen, self.color, self.rect)
-      
-   def update(self):
-      key = pg.key.get_pressed()  # проверяем нажатые кнопки
-      # если стрелка влево нажата и блок не ушёл за границу левую:
-      if key[pg.K_LEFT] and self.rect.left > 0:
-         self.rect.left -= self.paddle_speed
-         # иначе если стрелка вправо нажата и блок не ушёл за границу правую:
-      elif key[pg.K_RIGHT] and self.rect.right < self.game.WIDTH:
-         self.rect.right += self.paddle_speed
-
-class Ball:
-   def __init__(self, root: Game):
-       pass
-
-   def draw(self):
-       pass
-
-   def update(self):
-       pass
-
-if __name__ == '__main__':
-   game = Game()
-   game.run()
