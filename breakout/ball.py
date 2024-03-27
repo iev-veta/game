@@ -16,6 +16,9 @@ class Ball:
         self.dx, self.dy = 1, -1
 
     def draw(self):
+        """
+        Метод отрисовки шара на экране
+        """
         pg.draw.circle(self.game.screen,
                        pg.Color(255, 255, 255),
                        self.ball.center,
