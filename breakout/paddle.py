@@ -3,6 +3,9 @@ import pygame as pg
 
 class Paddle:
     def __init__(self, root):
+        """
+        Конструктор
+        """
         self.game = root
         self.paddle_w = 250
         self.paddle_h = 30
@@ -14,9 +17,15 @@ class Paddle:
         self.color = pg.Color(200, 130, 50)
 
     def draw(self):
+        """
+        Метод отрисовки блоков
+        """
         pg.draw.rect(self.game.screen, self.color, self.rect)
 
     def update(self):
+        """
+        Метод обновление
+        """
         key = pg.key.get_pressed()
         if key[pg.K_LEFT] and self.rect.left > 0:
             self.rect.left -= self.paddle_speed
