@@ -3,6 +3,9 @@
 
 Для запуска игры необходимо открыть терминал по адресу папки
 Ввести в терминал 
-  chmod +x script.sh
-  ./script.sh
+  1) chmod +x script.sh
+  2) ./script.sh
+
+Далее нужно открыть папку dist и разархивировать break_out-0.1.tar.gz
+В папке break_out-0.1 нужно открыть breakout и запустить файл main.py
 
