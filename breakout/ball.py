@@ -5,6 +5,9 @@ import pygame as pg
 
 class Ball:
     def __init__(self, root):
+        """
+        Конструктор
+        """
         self.game = root
         self.radius = 10
         self.speed = 5
@@ -25,16 +28,25 @@ class Ball:
                        self.radius)
 
     def move(self):
+        """
+        Движение
+        """
         self.ball.x += self.speed * self.dx
         self.ball.y += self.speed * self.dy
 
     def check_collisions(self):
+        """
+        Метод проверки колизии
+        """
         if self.ball.centerx < self.radius or self.ball.centerx > self.game.WIDTH - self.radius:
             self.dx = -self.dx
         if self.ball.centery < self.radius:
             self.dy = -self.dy
 
     def calculate_movement(self, rect):
+        """
+        Вычисление движения
+        """
         if self.dx > 0:
             delta_x = self.ball.right - rect.left
         else:
@@ -55,10 +67,16 @@ class Ball:
             self.dx = -self.dx
 
     def check_paddle(self):
+        """
+        Метод для проверки блоков
+        """
         if self.ball.colliderect(self.game.paddle) and self.dy > 0:
             self.calculate_movement(self.game.paddle.rect)
 
     def check_block_collision(self):
+        """
+        Метод проверки колизии для блоков
+        """
         hit_index = self.ball.collidelist(self.game.block_list)
 
         if hit_index != -1:
@@ -68,6 +86,9 @@ class Ball:
             self.game.FPS += 2
 
     def update(self):
+        """
+        Метод обновление
+        """
         self.move()
         self.check_collisions()
         self.check_paddle()
