@@ -56,7 +56,13 @@ class Game:
 
       self.paddle.draw()
       self.ball.draw()
-
+      
+   def check_game_over(self):
+      if self.ball.ball.bottom > self.HEIGHT:
+         GameOver().run()
+      elif not len(self.block_list):
+         GameWin().run()
+       
    @staticmethod
    def check_events():
       """
@@ -72,6 +78,7 @@ class Game:
       Метод запуска 
       """
       while True:
+         self.check_game_over()
          self.check_events()
          self.update()
          self.draw()
