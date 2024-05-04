@@ -9,6 +9,6 @@ setup(
     name="break_out",
     version="0.1",
     packages = find_packages(),
-    install_requirements = requirements
+    install_requires = requirements
 
 )
