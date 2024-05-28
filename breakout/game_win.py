@@ -1,5 +1,3 @@
-from time import sleep
-
 import pygame as pg
 import sys
 
@@ -35,15 +33,6 @@ class GameWin:
             if event.type == pg.QUIT:
                 pg.quit()
                 sys.exit()
-            # if event.type == pg.MOUSEBUTTONDOWN:
-            #     if self.start_button_rect.collidepoint(event.pos):
-            #
-            #         self.screen.fill(pg.Color('black'))  # Красим фон в чёрный
-            #
-            #         pg.display.flip()  # обновляем экран
-            #         sleep(1)  # ждём 3 секунды
-            #         return False
-
         return True
 
     def run(self):

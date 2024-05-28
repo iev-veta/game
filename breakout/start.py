@@ -1,9 +1,7 @@
 from time import sleep
-
-import pygame as pg
 import sys
 
-
+import pygame as pg
 
 class Start:
     def __init__(self):
@@ -50,9 +48,7 @@ class Start:
 
                     self.screen.fill(pg.Color('black'))  # Красим фон в чёрный
                     self.attention()
-
-
-                    sleep(5)  # ждём 3 секунды
+                    sleep(3)  # ждём 3 секунды
                     return False
                 if self.exit_button_rect.collidepoint(event.pos):
                     pg.quit()

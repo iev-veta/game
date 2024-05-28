@@ -3,50 +3,34 @@ from random import randrange
 import pygame as pg
 
 
-class Ball:
+class Ball(pg.sprite.Sprite):
     def __init__(self, root):
-        """
-        Конструктор
-        """
+        pg.sprite.Sprite.__init__(self)
         self.game = root
         self.radius = 10
         self.speed = 5
 
         self.rect = int(self.radius * 2 ** 0.5)
 
-        self.ball = pg.Rect(randrange(self.rect, self.game.WIDTH - self.rect),
-                            self.game.HEIGHT // 2, self.rect, self.rect)
+        self.image = pg.transform.scale(pg.image.load("pi/ball.png"), (20, 20))
+        self.ball = self.image.get_rect(center=(randrange(self.rect, self.game.WIDTH - self.rect),
+                            self.game.HEIGHT // 2))
         self.dx, self.dy = 1, -1
 
     def draw(self):
-        """
-        Метод отрисовки шара на экране
-        """
-        pg.draw.circle(self.game.screen,
-                       pg.Color(255, 255, 255),
-                       self.ball.center,
-                       self.radius)
+        self.game.screen.blit(self.image, self.ball)
 
     def move(self):
-        """
-        Движение
-        """
         self.ball.x += self.speed * self.dx
         self.ball.y += self.speed * self.dy
 
     def check_collisions(self):
-        """
-        Метод проверки колизии
-        """
         if self.ball.centerx < self.radius or self.ball.centerx > self.game.WIDTH - self.radius:
             self.dx = -self.dx
         if self.ball.centery < self.radius:
             self.dy = -self.dy
 
     def calculate_movement(self, rect):
-        """
-        Вычисление движения
-        """
         if self.dx > 0:
             delta_x = self.ball.right - rect.left
         else:
@@ -67,28 +51,19 @@ class Ball:
             self.dx = -self.dx
 
     def check_paddle(self):
-        """
-        Метод для проверки блоков
-        """
         if self.ball.colliderect(self.game.paddle) and self.dy > 0:
             self.calculate_movement(self.game.paddle.rect)
 
     def check_block_collision(self):
-        """
-        Метод проверки колизии для блоков
-        """
-        hit_index = self.ball.collidelist(self.game.block_list)
+        hit_index = self.ball.collideobjects(self.game.block_list)
 
-        if hit_index != -1:
-            hit_rect = self.game.block_list.pop(hit_index)
-            self.game.color_list.pop(hit_index)
-            self.calculate_movement(hit_rect)
+        if hit_index:
+            print(self.game.block_list)
+            self.calculate_movement(hit_index.rect)
             self.game.FPS += 2
+            self.game.block_list.remove(hit_index)
 
     def update(self):
-        """
-        Метод обновление
-        """
         self.move()
         self.check_collisions()
         self.check_paddle()

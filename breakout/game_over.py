@@ -1,10 +1,6 @@
-from time import sleep
-
 import pygame as pg
 import sys
 
-
-restart = True
 
 class GameOver:
     def __init__(self):
@@ -22,12 +18,11 @@ class GameOver:
         self.start_button = self.button_font.render("Вы проиграли!", True, (255, 255, 255))
         self.start_button_rect = self.start_button.get_rect(center=(self.WIDTH // 2, 300))
 
-        self.restart_button = self.button_font.render("Начать заново", True, (255, 255, 255))
-        self.restart_button_rect = self.restart_button.get_rect(center=(self.WIDTH // 2, 400))
+        # self.restart_button = self.button_font.render("Начать заново", True, (255, 255, 255))
+        # self.restart_button_rect = self.restart_button.get_rect(center=(self.WIDTH // 2, 400))
 
     def update(self):
         pg.display.flip()
-
 
     def draw(self):
         self.screen.blit(self.image, (0, 0))
@@ -46,20 +41,9 @@ class GameOver:
             if event.type == pg.QUIT:
                 pg.quit()
                 sys.exit()
-            # if event.type == pg.MOUSEBUTTONDOWN:
-            #     if self.restart_button_rect.collidepoint(event.pos):
-            #
-            #         self.attention()
-            #
-            #         sleep(1)  # ждём 3 секунды
-            #         Restart().run()
-            #         return False
-
         return True
 
     def run(self):
         while self.check_events():
-
             self.update()
             self.draw()
-
