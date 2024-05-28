@@ -16,7 +16,7 @@ class GameWin:
 
         self.button_font = pg.font.Font(None, 36)
 
-        self.start_button = self.button_font.render("Вы выиграли!", True, (255, 255, 255))
+        self.start_button = self.button_font.render("УРА СТИПЕНДИЯ!", True, (255, 255, 255))
         self.start_button_rect = self.start_button.get_rect(center=(self.WIDTH // 2, 300))
 
     def update(self):
