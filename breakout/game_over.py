@@ -15,7 +15,7 @@ class GameOver:
 
         self.button_font = pg.font.Font(None, 36)
 
-        self.start_button = self.button_font.render("Вы проиграли!", True, (255, 255, 255))
+        self.start_button = self.button_font.render("ОПЯТЬ ПЕРЕСДАЧА :(", True, (255, 255, 255))
         self.start_button_rect = self.start_button.get_rect(center=(self.WIDTH // 2, 300))
 
         # self.restart_button = self.button_font.render("Начать заново", True, (255, 255, 255))
@@ -31,7 +31,7 @@ class GameOver:
 
     def attention(self):
         self.screen.fill(pg.Color('black'))  # Красим фон в чёрный
-        start_button = self.button_font.render("Приготовьтесь!", True, (255, 255, 255))
+        start_button = self.button_font.render("СЧАСТЛИВЫХ ВАМ ГОЛОДНЫХ ИГР!", True, (255, 255, 255))
         start_button_rect = start_button.get_rect(center=(self.WIDTH // 2, 300))
         self.screen.blit(start_button, start_button_rect)
         pg.display.flip()
